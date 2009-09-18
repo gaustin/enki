@@ -4,7 +4,7 @@ atom_feed(
   :schema_date => '2008'
 ) do |feed|
   feed.title     posts_title(@tag)
-  feed.updated   @posts.empty? ? Time.now.utc : @posts.collect(&:edited_at).max
+  feed.updated   @posts.empty? ? Time.zone.now.utc : @posts.collect(&:edited_at).max
   feed.generator "Enki", "uri" => "http://enkiblog.com"
 
   feed.author do |xml|

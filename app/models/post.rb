@@ -52,7 +52,7 @@ class Post < ActiveRecord::Base
       tag = options.delete(:tag)
       options = {
         :order      => 'posts.published_at DESC',
-        :conditions => ['published_at < ?', Time.now],
+        :conditions => ['published_at < ?', Time.zone.now],
         :limit      => DEFAULT_LIMIT
       }.merge(options)
       if tag
@@ -80,7 +80,7 @@ class Post < ActiveRecord::Base
       posts = find(
         :all,
         :order      => 'posts.published_at DESC',
-        :conditions => ['published_at < ?', Time.now]
+        :conditions => ['published_at < ?', Time.zone.now]
       )
       month = Struct.new(:date, :posts)
       posts.group_by(&:month).inject([]) {|a, v| a << month.new(v[0], v[1])}
@@ -103,7 +103,7 @@ class Post < ActiveRecord::Base
   end
 
   def set_dates
-    self.edited_at = Time.now if self.edited_at.nil? || !minor_edit?
+    self.edited_at = Time.zone.now if self.edited_at.nil? || !minor_edit?
     self.published_at = Chronic.parse(self.published_at_natural)
   end
 

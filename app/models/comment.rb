@@ -68,7 +68,7 @@ class Comment < ActiveRecord::Base
     
     def new_with_filter(params)
       comment = Comment.new(params)
-      comment.created_at = Time.now
+      comment.created_at = Time.zone.now
       comment.apply_filter
       comment
     end
