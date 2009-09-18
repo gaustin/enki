@@ -19,7 +19,6 @@ body
 
   margin-top: 5px;
   padding-left: 10px;
-  border-right: solid 1px #aaaaaa;
   border-top: solid 1px #aaaaaa;
 }
 
@@ -34,7 +33,7 @@ body
   padding-bottom: 5px;
   padding-left: 5px;
   color: gray;
-  border-bottom: solid 1px #aaaaaa;
+  border-top: solid 1px #aaaaaa;
 }
 
 /* Headings */
